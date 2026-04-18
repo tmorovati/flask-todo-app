@@ -31,4 +31,4 @@ A simple local todo app built with Python and Flask.
 
 
 
-STILL ONGOING
+ONGOING
