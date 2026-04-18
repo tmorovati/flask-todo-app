@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+</head>
+<body>
+    <h1>My Todo List</h1>
+
+    <h2>Add a Task</h2>
+    <form action="/add" method="POST">
+        <label for="name">Task Name:</label>
+        <input type="text" id="name" name="name" required>
+        <br><br>
+
+        <label for="description">Description:</label>
+        <input type="text" id="description" name="description" required>
+        <br><br>
+
+        <label for="rank">Rank:</label>
+        <select id="rank" name="rank" required>
+            <option value="high">High</option>
+            <option value="medium">Medium</option>
+            <option value="low">Low</option>
+        </select>
+        <br><br>
+
+        <button type="submit">Add Task</button>
+    </form>
+
+    <hr>
+
+    <h2>Task List</h2>
+
+    {% if tasks %}
+        <ul>
+            {% for task in tasks %}
+                <li>
+                    <strong>{{ task.name }}</strong> -
+                    {{ task.description }} -
+                    {{ task.rank }}
+
+                    <form action="/delete" method="POST" style="display:inline;">
+                        <input type="hidden" name="task_name" value="{{ task.name }}">
+                        <button type="submit">Remove</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No tasks yet.</p>
+    {% endif %}
+</body>
+</html>
